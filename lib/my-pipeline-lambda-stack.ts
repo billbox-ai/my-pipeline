@@ -11,5 +11,11 @@ export class MyLambdaStack extends cdk.Stack {
       handler: "index.handler",
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
     });
+
+    new Function(this, "AnotherLambdaFunction", {
+      runtime: Runtime.NODEJS_16_X,
+      handler: "index.handler",
+      code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
+    });
   }
 }
