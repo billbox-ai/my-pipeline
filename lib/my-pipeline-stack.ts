@@ -20,12 +20,18 @@ export class MyPipelineStack extends cdk.Stack {
       }),
     });
 
-    const testingStage = pipeline.addStage(
-      new MyPipelineAppStage(this, "testing", {
+    const devStage = pipeline.addStage(
+      new MyPipelineAppStage(this, "dev", {
         env: { account: "833319748114", region: "us-east-1" },
       })
     );
 
-    testingStage.addPost(new ManualApprovalStep("approval"));
+    devStage.addPost(new ManualApprovalStep("approval"));
+
+    const prodStage = pipeline.addStage(
+      new MyPipelineAppStage(this, "prod", {
+        env: { account: "833319748114", region: "us-east-1" },
+      })
+    );
   }
 }
