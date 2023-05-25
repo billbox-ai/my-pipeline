@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.62.2",
+    "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1385.0",
     "billbox-base": "^0.0.1",
     "constructs": "^10.0.0",
