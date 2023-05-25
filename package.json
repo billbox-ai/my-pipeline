@@ -5,7 +5,8 @@
     "my-pipeline": "bin/my-pipeline.js"
   },
   "scripts": {
-    "build": "tsc",
+    "co:login": "aws codeartifact login --tool npm --repository private-repository --domain billbox",
+    "build": "npm run co:login && tsc",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
