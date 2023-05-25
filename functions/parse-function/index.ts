@@ -23,9 +23,13 @@ class ParseLambdaHandler extends LambdaHandler {
     const s3 = new S3();
     const data = await s3.getObject(params).promise();
     const message = data.Body?.toString("utf-8") || "";
+    this.logger.info("message: " + message);
+
     const parsedMessage: mailparser.ParsedMail = await mailparser.simpleParser(
       message
     );
+    this.logger.info("parsedMessage: " + JSON.stringify(parsedMessage));
+
     const response = {
       result: "success",
       message: parsedMessage,

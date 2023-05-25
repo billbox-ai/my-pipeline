@@ -19,6 +19,7 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "outDir": "./dist"
   },
   "exclude": [
     "node_modules",
