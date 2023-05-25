@@ -7,10 +7,29 @@ import {
   ManualApprovalStep,
 } from "aws-cdk-lib/pipelines";
 import { MyPipelineAppStage } from "./my-pipeline-app-stage";
+import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 export class MyPipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+    const rolePolicy: PolicyStatement[] = [
+      new PolicyStatement({
+        actions: [
+          "codeartifact:GetAuthorizationToken",
+          "codeartifact:GetRepositoryEndpoint",
+          "codeartifact:ReadFromRepository",
+        ],
+        resources: ["*"],
+      }),
+      new PolicyStatement({
+        actions: ["sts:GetServiceBearerToken"],
+        resources: ["*"],
+        conditions: {
+          StringEquals: { "sts:AWSServiceName": "codeartifact.amazonaws.com" },
+        },
+      }),
+    ];
 
     const pipeline = new CodePipeline(this, "Pipeline", {
       pipelineName: "MyPipeline",
@@ -23,6 +42,10 @@ export class MyPipelineStack extends cdk.Stack {
           "npx cdk synth",
         ],
       }),
+
+      codeBuildDefaults: {
+        rolePolicy: rolePolicy,
+      },
     });
 
     const devStage = pipeline.addStage(
