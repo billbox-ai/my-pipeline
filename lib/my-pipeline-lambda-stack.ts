@@ -1,15 +1,32 @@
-import * as cdk from "aws-cdk-lib";
+import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import { LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
-import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
 
-export class MyLambdaStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class MyLambdaStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    new Function(this, "LambdaFunction", {
+    const layerExampleLambda = new NodejsFunction(this, "LayerExampleLambda", {
+      entry: "./functions/parse-function/index.ts",
+      handler: "handler",
       runtime: Runtime.NODEJS_16_X,
-      handler: "index.handler",
-      code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
+      environment: {
+        REGION: "us-east-1",
+      },
+      timeout: Duration.seconds(15),
+      memorySize: 128,
+      bundling: {
+        sourceMap: true,
+        externalModules: ["aws-sdk", "@billbox/base"],
+      },
+      layers: [
+        LayerVersion.fromLayerVersionArn(
+          this,
+          "BaseLayerVersionName",
+          "arn:aws:lambda:us-east-1:833319748114:layer:BaseLayerVersionName:3"
+        ),
+      ],
     });
   }
 }

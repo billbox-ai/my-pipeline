@@ -1,0 +1,31 @@
+{
+  "$id": "parse-event",
+  "title": "Parse Event",
+  "type": "object",
+  "properties": {
+    "DocumentLocation": {
+      "type": "object",
+      "properties": {
+        "S3Object": {
+          "type": "object",
+          "properties": {
+            "Bucket": { "type": "string" },
+            "Name": { "type": "string" }
+          },
+          "required": ["Bucket", "Name"]
+        }
+      },
+      "required": ["S3Object"]
+    },
+
+    "OutputConfig": {
+      "type": "object",
+      "properties": {
+        "S3Bucket": { "type": "string" },
+        "S3Prefix": { "type": "string" }
+      },
+      "required": ["S3Bucket", "S3Prefix"]
+    }
+  },
+  "required": ["DocumentLocation"]
+}
