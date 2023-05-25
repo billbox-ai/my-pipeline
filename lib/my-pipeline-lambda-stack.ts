@@ -18,7 +18,6 @@ export class MyLambdaStack extends Stack {
       memorySize: 128,
       bundling: {
         sourceMap: true,
-        externalModules: ["aws-sdk", "billbox-base"],
       },
       layers: [
         LayerVersion.fromLayerVersionArn(
