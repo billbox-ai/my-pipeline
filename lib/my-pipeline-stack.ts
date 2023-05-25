@@ -16,7 +16,12 @@ export class MyPipelineStack extends cdk.Stack {
       pipelineName: "MyPipeline",
       synth: new ShellStep("Synth", {
         input: CodePipelineSource.gitHub("billbox-ai/my-pipeline", "main"),
-        commands: ["npm ci", "npm run build", "npx cdk synth"],
+        commands: [
+          "npm run co:login",
+          "npm ci",
+          "npm run build",
+          "npx cdk synth",
+        ],
       }),
     });
 
