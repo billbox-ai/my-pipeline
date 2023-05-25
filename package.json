@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.62.2",
+    "aws-sdk": "^2.1385.0",
+    "billbox-base": "^0.0.1",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
   }
