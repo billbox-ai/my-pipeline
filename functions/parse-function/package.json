@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@billbox/base": "^0.0.9",
-    "aws-sdk": "^2.1384.0"
+    "aws-sdk": "^2.1384.0",
+    "billbox-base": "^0.0.1"
   }
 }
