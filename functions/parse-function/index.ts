@@ -1,5 +1,5 @@
 import { S3 } from "aws-sdk";
-import { metrics, LambdaHandler, mailparser } from "@billbox/base";
+import { metrics, LambdaHandler, mailparser } from "billbox-base";
 
 //TODO update to types folder outside of src
 import { ParseEvent } from "./types";
