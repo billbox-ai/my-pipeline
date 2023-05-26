@@ -2,7 +2,7 @@
   "name": "my-pipeline",
   "version": "0.1.0",
   "bin": {
-    "my-pipeline": "bin/my-pipeline.js"
+    "my-pipeline": "dist/bin/main.js"
   },
   "scripts": {
     "co:login": "aws codeartifact login --tool npm --repository private-repository --domain billbox",

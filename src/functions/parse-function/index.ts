@@ -20,15 +20,14 @@ class ParseLambdaHandler extends LambdaHandler {
       Key: event.DocumentLocation.S3Object.Name,
     };
 
+    //TODO put catch and handle errors like no message returned, access not allowed to S3 bucket, etc
     const s3 = new S3();
     const data = await s3.getObject(params).promise();
-    this.logger.info("data: " + data);
     const message = data.Body?.toString("utf-8") || "";
 
     const parsedMessage: mailparser.ParsedMail = await mailparser.simpleParser(
       message
     );
-    this.logger.info("parsedMessage: " + JSON.stringify(parsedMessage));
 
     const response = {
       result: "success",
