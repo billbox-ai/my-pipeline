@@ -32,7 +32,7 @@ export class MyLambdaStack extends Stack {
         LayerVersion.fromLayerVersionArn(
           this,
           "BaseLayerVersionName",
-          "arn:aws:lambda:us-east-1:833319748114:layer:BaseLayerVersionName:4"
+          latestBaseLayerArn
         ),
       ],
     });
