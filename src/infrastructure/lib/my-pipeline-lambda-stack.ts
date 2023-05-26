@@ -8,7 +8,7 @@ export class MyLambdaStack extends Stack {
     super(scope, id, props);
 
     const layerExampleLambda = new NodejsFunction(this, "LayerExampleLambda", {
-      entry: "./functions/parse-function/index.ts",
+      entry: "./src/functions/parse-function/index.ts",
       handler: "handler",
       runtime: Runtime.NODEJS_16_X,
       environment: {

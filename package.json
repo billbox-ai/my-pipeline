@@ -2,11 +2,11 @@
   "name": "my-pipeline",
   "version": "0.1.0",
   "bin": {
-    "my-pipeline": "dist/bin/main.js"
+    "my-pipeline": "dist/infrastructure/main.js"
   },
   "scripts": {
     "co:login": "aws codeartifact login --tool npm --repository private-repository --domain billbox",
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
