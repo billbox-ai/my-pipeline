@@ -9,9 +9,9 @@ export class MyLambdaStack extends Stack {
     super(scope, id, props);
 
     // get latest version of base layer
-    const baseLayerArn = StringParameter.valueForStringParameter(
+    const latestBaseLayerArn = StringParameter.valueForStringParameter(
       this,
-      "base-layer-arn"
+      "BaseLayerArn"
     );
 
     // TODO extract this to billbox lambda construct
