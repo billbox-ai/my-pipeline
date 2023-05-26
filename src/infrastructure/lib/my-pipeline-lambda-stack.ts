@@ -2,11 +2,19 @@ import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import { LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
+import { StringParameter } from "aws-cdk-lib/aws-ssm";
 
 export class MyLambdaStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
+    // get latest version of base layer
+    const baseLayerArn = StringParameter.valueForStringParameter(
+      this,
+      "base-layer-arn"
+    );
+
+    // TODO extract this to billbox lambda construct
     const layerExampleLambda = new NodejsFunction(this, "LayerExampleLambda", {
       entry: "./src/functions/parse-function/index.ts",
       handler: "handler",
