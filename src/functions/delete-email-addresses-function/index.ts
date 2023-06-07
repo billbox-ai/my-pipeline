@@ -1,28 +1,28 @@
-import { CreateEmailAddressesEvent, EmailAddressesCreated } from "./types/";
+import { DeleteEmailAddressesEvent, EmailAddressesDeleted } from "./types/";
 import { DynamoDB } from "aws-sdk";
 
 const dynamoDB = new DynamoDB();
 
 export const handler = async (
-  event: CreateEmailAddressesEvent
-): Promise<EmailAddressesCreated> => {
+  event: DeleteEmailAddressesEvent
+): Promise<EmailAddressesDeleted> => {
   //const { emailAddress } = JSON.parse(event. || "");
 
-  const params: DynamoDB.PutItemInput = {
+  const params: AWS.DynamoDB.DeleteItemInput = {
     TableName: process.env.EMAIL_TABLE_NAME!,
-    Item: {
-      emailAddress: { S: "test@email.com" },
+    Key: {
+      emailId: { S: "test@test.com" },
     },
   };
 
   try {
-    await dynamoDB.putItem(params).promise();
+    await dynamoDB.deleteItem(params).promise();
 
     return {
       emailAddresses: ["test@email.com"],
     };
   } catch (error) {
-    console.error("Error creating email:", error);
+    console.error("Error deleting email:", error);
 
     //TODO fix schema validation
     return {

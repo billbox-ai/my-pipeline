@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "id": "12345678",
+  "detailType": "CustomEvent",
+  "source": "billbox-bus-event-dev",
+  "account": "123456789012",
+  "time": "2023-05-20T10:30:00Z",
+  "region": "us-west-2",
+  "resources": ["resource1", "resource2"],
+  "detail": {
+    "eventType": "DeleteEmailAddresses",
+    "eventData": {
+      "emailAddresses": ["mike.whalen@example.com"]
+    }
+  }
+}

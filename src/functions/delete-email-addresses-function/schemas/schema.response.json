@@ -1,0 +1,14 @@
+{
+  "$id": "email-addresses-deleted-event",
+  "title": "Email Addresses Deleted Event",
+  "type": "object",
+  "properties": {
+        "emailAddresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+  },
+      "required": ["emailAddresses"]
+}

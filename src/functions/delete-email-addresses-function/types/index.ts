@@ -1,4 +1,4 @@
-export interface CreateEmailAddressesEvent {
+export interface DeleteEmailAddressesEvent {
   version: string;
   id: string;
   detailType: string;
@@ -15,6 +15,6 @@ export interface CreateEmailAddressesEvent {
   };
 }
 
-export interface EmailAddressesCreated {
+export interface EmailAddressesDeleted {
   emailAddresses: string[];
 }

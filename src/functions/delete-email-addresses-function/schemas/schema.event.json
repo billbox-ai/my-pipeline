@@ -1,0 +1,56 @@
+{
+  "$id": "delete-email-addresses-event",
+  "title": "Delete Email Addresses Event",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "detailType": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "account": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "detail": {
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "type": "string"
+        },
+        "eventData": {
+          "type": "object",
+          "properties": {
+            "emailAddresses": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["emailAddresses"]
+        }
+      },
+      "required": ["eventType", "eventData"]
+    }
+  },
+  "required": ["version", "id", "detailType", "source", "account", "time", "region", "resources", "detail"]
+}

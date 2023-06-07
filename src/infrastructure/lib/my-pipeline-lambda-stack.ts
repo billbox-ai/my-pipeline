@@ -75,7 +75,27 @@ export class MyLambdaStack extends Stack {
         },
       }
     );
-
     emailTable.grantReadWriteData(createEmailAddressesFunction);
+
+    const deleteEmailAddressesFunction = new NodejsFunction(
+      this,
+      "DeleteEmailAddressesFunction-" + stageName,
+      {
+        entry: "./src/functions/delete-email-addresses-function/index.ts",
+        handler: "handler",
+        runtime: Runtime.NODEJS_16_X,
+        environment: {
+          REGION: "us-east-1",
+          EMAIL_TABLE_NAME: emailTable.tableName,
+        },
+        timeout: Duration.seconds(15),
+        memorySize: 128,
+        bundling: {
+          sourceMap: true,
+          externalModules: ["aws-sdk", "billbox-base"],
+        },
+      }
+    );
+    emailTable.grantReadWriteData(deleteEmailAddressesFunction);
   }
 }
