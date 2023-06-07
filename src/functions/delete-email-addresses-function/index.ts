@@ -11,7 +11,7 @@ export const handler = async (
   const params: AWS.DynamoDB.DeleteItemInput = {
     TableName: process.env.EMAIL_TABLE_NAME!,
     Key: {
-      emailId: { S: "test@test.com" },
+      emailAddress: { S: "test@test.com" },
     },
   };
 
