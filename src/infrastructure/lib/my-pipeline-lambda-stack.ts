@@ -65,6 +65,7 @@ export class MyLambdaStack extends Stack {
         runtime: Runtime.NODEJS_16_X,
         environment: {
           REGION: "us-east-1",
+          EMAIL_TABLE_NAME: emailTable.tableName,
         },
         timeout: Duration.seconds(15),
         memorySize: 128,
