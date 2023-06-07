@@ -6,10 +6,10 @@ import {
   ShellStep,
   ManualApprovalStep,
 } from "aws-cdk-lib/pipelines";
-import { MyPipelineAppStage } from "./my-pipeline-app-stage";
+import { PipelineAppStage } from "./pipeline-app-stage";
 import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 
-export class MyPipelineStack extends cdk.Stack {
+export class PipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -31,8 +31,8 @@ export class MyPipelineStack extends cdk.Stack {
       }),
     ];
 
-    const pipeline = new CodePipeline(this, "Pipeline", {
-      pipelineName: "MyPipeline",
+    const pipeline = new CodePipeline(this, "InboundEmailPipeline", {
+      pipelineName: "InboundEmailPipeline",
       synth: new ShellStep("Synth", {
         input: CodePipelineSource.gitHub("billbox-ai/my-pipeline", "main"),
         commands: [
@@ -49,7 +49,7 @@ export class MyPipelineStack extends cdk.Stack {
     });
 
     const devStage = pipeline.addStage(
-      new MyPipelineAppStage(this, "dev", {
+      new PipelineAppStage(this, "dev", {
         env: { account: "833319748114", region: "us-east-1" },
       })
     );

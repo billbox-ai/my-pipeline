@@ -5,7 +5,7 @@ import { Construct } from "constructs";
 import { StringParameter } from "aws-cdk-lib/aws-ssm";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 
-export class MyLambdaStack extends Stack {
+export class InboundEmailStack extends Stack {
   constructor(
     scope: Construct,
     id: string,
