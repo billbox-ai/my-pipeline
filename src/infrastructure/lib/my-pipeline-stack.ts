@@ -54,12 +54,12 @@ export class MyPipelineStack extends cdk.Stack {
       })
     );
 
-    devStage.addPost(new ManualApprovalStep("approval"));
+    //devStage.addPost(new ManualApprovalStep("approval"));
 
-    const prodStage = pipeline.addStage(
-      new MyPipelineAppStage(this, "prod", {
-        env: { account: "833319748114", region: "us-east-1" },
-      })
-    );
+    //const prodStage = pipeline.addStage(
+    //  new MyPipelineAppStage(this, "prod", {
+    //    env: { account: "833319748114", region: "us-east-1" },
+    //  })
+    //);
   }
 }
