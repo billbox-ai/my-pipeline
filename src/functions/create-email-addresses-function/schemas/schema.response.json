@@ -1,0 +1,17 @@
+{
+  "$id": "email-addresses-created-event",
+  "title": "Email Addresses Created Event",
+  "type": "object",
+  "properties": {
+        "name": {
+          "type": "string"
+        },
+        "emailAddresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+  },
+      "required": ["name", "emailAddresses"]
+}

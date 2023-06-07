@@ -35,6 +35,7 @@ class ParseLambdaHandler extends LambdaHandler {
     };
 
     this.metrics.addMetric("successfulParsing", metrics.MetricUnits.Count, 1);
+    this.logger.info("Response = " + JSON.stringify(response));
     return response;
   }
 }
