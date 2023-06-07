@@ -72,13 +72,6 @@ export class MyLambdaStack extends Stack {
           sourceMap: true,
           externalModules: ["aws-sdk", "billbox-base"],
         },
-        layers: [
-          LayerVersion.fromLayerVersionArn(
-            this,
-            "BaseLayerVersionName",
-            latestBaseLayerArn
-          ),
-        ],
       }
     );
 
